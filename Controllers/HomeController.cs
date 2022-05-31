@@ -6,27 +6,23 @@ namespace la_mia_pizzeria_static.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        List<Info> InfoList = new List<Info>();
 
-        public HomeController(ILogger<HomeController> logger)
+        public void PersonalData()
         {
-            _logger = logger;
+            Info MyInfo = new Info()
+            {
+                Id = 1,
+                Name = "Cezar",
+                Surname = "Lantos",
+            };
+            InfoList.Add(MyInfo);
         }
 
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            PersonalData();
+            return View(InfoList);
         }
     }
 }
